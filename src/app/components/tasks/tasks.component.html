@@ -1,19 +1,19 @@
 @if (isAddingTask()) {
-<app-new-task (createTask)="onCreateTask($event)" (cancel)="isAddingTask.set(false)"></app-new-task>
+<app-new-task (createTask)="isAddingTask.set(false)" (cancel)="isAddingTask.set(false)"></app-new-task>
 }
 
 <section id="tasks">
     <header>
-        <h1> {{selectedUser().name}} Tasks</h1>
+        <h1> {{ tasksService.selectedUser()!.name}} Tasks</h1>
         <menu>
             <button (click)="onAddTask()">Add Task</button>
         </menu>
     </header>
     <ul>
-        @for(task of userTasks(); track task.id)
+        @for(task of tasksService.userTasks(); track task.id)
         {
         <li>
-            <app-task [task]="task" (compleatTask)="onCompleteTask($event)"></app-task>
+            <app-task [task]="task" />
         </li>
         }
     </ul>

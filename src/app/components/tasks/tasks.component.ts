@@ -1,8 +1,7 @@
-import { Component, computed, input, output, signal } from '@angular/core';
-import { User } from '../../../dummy-users';
-import { dummyTasks, Task } from '../../../dummy-tasks';
+import { Component, signal } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from '../new-task/new-task.component';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -11,19 +10,14 @@ import { NewTaskComponent } from '../new-task/new-task.component';
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  tasks = dummyTasks;
+  constructor(readonly tasksService: TasksService) {}
+
   isAddingTask = signal<boolean>(false);
-  selectedUser = input.required<User>();
-  userTasks = input.required<Task[]>();
-  completeTask = output<string>();
-  createTask = output<Task>();
-  onCompleteTask(taskId: string) {
-    this.completeTask.emit(taskId);
-  }
-  onCreateTask(task: Task) {
-    this.createTask.emit(task);
+
+  onCreateTask() {
     this.isAddingTask.update((old) => !old);
   }
+
   onAddTask() {
     this.isAddingTask.update((old) => !old);
   }

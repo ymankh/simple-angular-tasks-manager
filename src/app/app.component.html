@@ -1,19 +1,14 @@
 <app-header></app-header>
 <main>
     <ul id="users">
-        @for (user of users; track user.id)
+        @for (user of tasksService.users(); track user.id)
         {
-        <li> <app-user [user]="user" (select)="onSelectUser($event)"
-                [selected]="selectedUser()?.id === user.id"></app-user>
+        <li> <app-user [user]="user" (select)="tasksService.onSelectUser($event)"
+                [selected]="tasksService.selectedUser()?.id === user.id"></app-user>
         </li>
         }
     </ul>
-    @if (selectedUser()) {
-    <app-tasks 
-    [selectedUser]="selectedUser()!" 
-    [userTasks]="userTasks()" 
-    (completeTask)="onCompleteTask($event)" 
-    (createTask)="onCreateTask($event)"
-    />
+    @if (tasksService.selectedUser()) {
+    <app-tasks />
     }
 </main>
