@@ -9,7 +9,11 @@
         }
     </ul>
     @if (selectedUser()) {
-    <app-tasks [selectedUser]="selectedUser()!" [userTasks]="userTasks()"
-        (completeTask)="onCompleteTask($event)"></app-tasks>
+    <app-tasks 
+    [selectedUser]="selectedUser()!" 
+    [userTasks]="userTasks()" 
+    (completeTask)="onCompleteTask($event)" 
+    (createTask)="onCreateTask($event)"
+    />
     }
 </main>

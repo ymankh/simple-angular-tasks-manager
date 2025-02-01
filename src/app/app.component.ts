@@ -29,5 +29,8 @@ export class AppComponent {
   onCompleteTask(taskId: string) {
     this.tasks.update((old) => old.filter((task) => task.id !== taskId));
   }
+  onCreateTask(task: Task) {
+    this.tasks.update((old) => [...old, task]);
+  }
   title = 'first-angular-app';
 }
