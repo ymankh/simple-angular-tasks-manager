@@ -1,0 +1,6 @@
+<div>
+    <button (click)="onSelect()" [class.active]="selected()">
+        <img [src]="avatarUrl()" alt="task management logo">
+        <span>{{user().name}}</span>
+    </button>
+</div>
